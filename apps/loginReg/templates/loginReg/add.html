@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Page</title>
+  </head>
+  <style>
+    #title{
+      float: right;
+      display: inline-block;
+    }
+    #title form{
+      display: inline-block;
+    }
+    #leftMargin{
+      margin-left: 35px;
+    }
+    #subButton{
+      position: relative;
+      left: 470px;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="title">
+        <form class="" action="{% url 'users:dashboard' %}" method="post">
+        {% csrf_token %}
+          <input type="submit" name="" value="Home">
+        </form>
+        <form class="" action="{% url 'users:logout' %}" method="post">
+        {% csrf_token %}
+          <input type="submit" name="" value="Logout">
+        </form>
+      </div>
+      <h2>Add a New Book Title and a Review</h2>
+      <form class="" action="{% url 'users:addBook' %}" method="post">
+        {% csrf_token %}
+        <p><label>Book Title: </label><input type="text" name="bookTitle"></p>
+        <p>Author:</p>
+        <div id="leftMargin">
+          <p>Choose from the list:
+
+          </p>
+          <p>Or add a new author:
+            <input type="text" name="authorList" value="dfd">
+          </p>
+          <p>Review:</p>
+          <p> <textarea name="comment" rows="8" cols="80"></textarea></p>
+          Rating: <select class="" name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select> stars
+        </div>
+        <div id='subButton'>
+          <input type="submit" name="" value="Add Book and Review">
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

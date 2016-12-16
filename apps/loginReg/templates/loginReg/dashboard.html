@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome Page</title>
+  </head>
+  <style>
+    #header{
+      display: inline-block;
+    }
+    .links{
+      display: inline-block;
+      /*vertical-align: top;*/
+    }
+    .right{
+      float: right;
+
+    }
+    #wrapper{
+      width: 800px;
+
+    }
+
+
+  </style>
+  <body>
+    <div id="wrapper">
+      <div class="links">
+        <h2>Welcome, {{ request.session.user_fname }}!</h2>
+      </div>
+      <div class ="links, right">
+        <form class="" action="{% url 'users:logout' %}" method="post">
+          {% csrf_token %}
+          <input type="submit" name="" value="Logout">
+        </form>
+      </div>
+      <div id="leftMain">
+        <h3>Your Wish List</h3>
+        <table border = 1>
+          <thead>
+            <tr>
+              <td>Item</td>
+              <td>Added by</td>
+              <td>Date Added</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
+          <tbody>
+              {% for wish in all_courses %}
+                <tr>
+                  <td><a href="wish_items/{{wish.id}}">{{wish.author }}</a></td>
+                  <td>{{ request.session.user_fname }}</td>
+                  <td>{{ wish.created_at }}</td>
+                  <td><a href="delete/{{wish.id}}">Remove</a></td>
+                </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div id="rightMain">
+        <h3>Other User's Wish List</h3>
+
+      </div>
+      <div class ="links, right">
+        <form class="" action="{% url 'users:add' %}" method="post">
+          {% csrf_token %}
+          <input type="submit" name="" value="Add Item">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

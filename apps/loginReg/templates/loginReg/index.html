@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login/ Registration</title>
+  </head>
+  <style>
+  .register{
+    display: inline-block;
+    border: 1px solid black;
+    padding: 15px;
+
+  }
+  .login {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+    padding: 15px;
+  }
+  form {
+    display: table;
+  }
+  p {
+    display: table-row;
+  }
+  label {
+    display: table-cell;
+  }
+  input {
+    margin-left: 5px;
+    display: table-cell;
+  }
+  #sub {
+    position: relative;
+    left: 360px;
+    top: 10px;
+  }
+  #sub2{
+    position: relative;
+    left: 178px;
+    top: 10px;
+  }
+  h3{
+    margin: 0px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  </style>
+  <body>
+    <h1>Welcome</h1>
+    <div class="register">
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+      <h3>Registration</h3>
+      <form class="" action="{% url 'users:register' %}" method="post">
+        {% csrf_token %}
+        <p><label>Name: </label><input type="text" name="first_name" value=""></p>
+        <p><label>Username: </label><input type="text" name="userName" value=""></p>
+        <p><label>Password: </label><input type="password" name="password" value=""></p>
+        <p>*Password should be at least 8 characters</p>
+        <p><label>Confirm PW: </label><input type="password" name="confirm_password" value=""></p>
+        <p><label>Date Hired: </label><input type="datehired" name="datehired" value=""></p>
+        <input id = "sub" type="submit" name="" value="Register">
+      </form>
+    </div>
+    <div class="login">
+      <h3>Login</h3>
+      <form class="" action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <p><label>Username: </label><input type="userName" name="userName" value=""></p>
+        <p><label>Password: </label><input type="password" name="password" value=""></p>
+        <input id = "sub2" type="submit" name="" value="Login">
+      </form>
+    </div>
+  </body>
+</html>
